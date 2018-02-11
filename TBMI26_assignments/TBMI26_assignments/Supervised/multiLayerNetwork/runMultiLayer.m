@@ -10,7 +10,7 @@ function [ Y, L, U, S ] = runMultiLayer( X, W, V )
 %               L = The resulting label of each feature, (vector) 
 
 S = W*X; %Calculate the sumation of the weights and the input signals (hidden neuron)
-S = [ones(1,length(S)); S];
+S = [ones(1,size(S,2)); S];
 
 U = tanh(S); %Calculate the activation function as a hyperbolic tangent
 

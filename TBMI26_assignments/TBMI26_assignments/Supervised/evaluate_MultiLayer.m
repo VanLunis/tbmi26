@@ -7,13 +7,13 @@
 % 3 = dot cloud 3
 % 4 = OCR data
 
-dataSetNr = 4; % Change this to load new data 
+dataSetNr = 3; % Change this to load new data 
 
 [X, D, L] = loadDataSet( dataSetNr );
 
 %% Select a subset of the training features
 
-numBins = 2; % Number of Bins you want to devide your data into
+numBins = 100; % Number of Bins you want to devide your data into
 numSamplesPerLabelPerBin = inf; % Number of samples per label per bin, set to inf for max number (total number is numLabels*numSamplesPerBin)
 selectAtRandom = true; % true = select features at random, false = select the first features
 
@@ -22,6 +22,18 @@ selectAtRandom = true; % true = select features at random, false = select the fi
 % Note: Xt, Dt, Lt will be cell arrays, to extract a bin from them use i.e.
 % XBin1 = Xt{1};
 %% Modify the X Matrices so that a bias is added
+
+% Creates testdata using the rest of the bins - used to create
+% non-generalizeable example
+tmp = Xt(2:end);
+Xt{2} = cat(2, tmp{:});
+
+tmp = Dt(2:end);
+Dt{2} = cat(2, tmp{:});
+
+tmp = Lt(2:end);
+Lt{2} = cat(1, tmp{:});
+
 
 % The Training Data
 Xtraining = [ones(1,length(Xt{1})); Xt{1}];
@@ -33,9 +45,9 @@ Xtest = [ones(1,length(Xt{2})); Xt{2}];
 %% Train your single layer network
 % Note: You nned to modify trainSingleLayer() in order to train the network
 
-numHidden = 40; % Change this, Number of hidde neurons 
-numIterations = 35000; % Change this, Numner of iterations (Epochs)
-learningRate = 0.01; % Change this, Your learningrate
+numHidden = 200; % Change this, Number of hidde neurons 
+numIterations = 10000; % Change this, Numner of iterations (Epochs)
+learningRate = 0.001; % Change this, Your learningrate
 
 W0 = (rand(numHidden, size(Xtraining,1)) - 0.5)/20;
 V0 = (rand(size(Dt{1},1),numHidden+1) - 0.5)/20;

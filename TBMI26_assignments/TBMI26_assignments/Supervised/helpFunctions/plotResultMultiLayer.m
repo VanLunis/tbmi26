@@ -25,5 +25,11 @@ imagesc(xi,yi,reshape(I,[nx ny]))
 colormap(gray)
 title('Test data result (green ok, red error)');
 plotData(Xtest(2:3,:),Ltest,LSingleLayerTest); hold off;
+%Temporary haXx for overfitting (task 8):
+% newL = [];
+% for index = 1:9
+%     newL = [newL; Ltest(:,index)];
+% end
+% plotData(Xtest(2:3,:),newL,LSingleLayerTest); hold off;
 end
 
