@@ -1,5 +1,5 @@
 function out = sample(values,probs)
-% SAMPLE randomly selects one of the geven values with the given probabilies.
+% SAMPLE randomly selects one of the given values with the given probabilities.
 %
 % Example:
 % out = sample([1 2 3 4], [0.2 0.1 0.1 0.6]);

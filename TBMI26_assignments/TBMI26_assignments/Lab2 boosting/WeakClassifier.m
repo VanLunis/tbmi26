@@ -9,7 +9,7 @@ function C = WeakClassifier(T, P, X)
 % This is for your own benefit, since a loop will be too slow to use
 % with a reasonable amount of Haar features and training images.
     
-Ctmp = (P*X>P*T);
+Ctmp = (P.*X>P.*T);
 C = Ctmp - (Ctmp == 0);
 end
 
